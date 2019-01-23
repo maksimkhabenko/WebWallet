@@ -7,7 +7,7 @@ import com.apolloweb.automation.pages.MainPage;
 import io.qameta.allure.Epic;
 
 import io.qameta.allure.Feature;
-import org.junit.Assert;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,11 +17,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class TestLogin extends TestBase {
 
     @Test
-    @Feature("Login")
+    @Story("Login")
+    @Feature("Login By Pass")
     public void loginValidUserNameValidPassword () throws InterruptedException {
-        page.GetInstance(LoginPage.class).login("1");
+        page.GetInstance(LoginPage.class).loginByPass(defaultPass);
         wait.until(ExpectedConditions.visibilityOfElementLocated(page.GetInstance(MainPage.class).acoountRS));
-        page.GetInstance(MainPage.class).verifyAccountID("APL-X5JH-TJKJ-DVGC-5T2V8");
+        page.GetInstance(MainPage.class).verifyAccountID(defaultAccountRS);
+        page.GetInstance(MainPage.class).logOut();
+    }
+
+    @Test
+    @Story("Login")
+    @Feature("Login By AccoutnRS")
+    public void loginValidAccountRS () throws InterruptedException {
+        page.GetInstance(LoginPage.class).loginByAccountRS(defaultAccountRS.substring(4));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(page.GetInstance(MainPage.class).acoountRS));
+        page.GetInstance(MainPage.class).verifyAccountID(defaultAccountRS);
+        page.GetInstance(MainPage.class).logOut();
     }
 
 

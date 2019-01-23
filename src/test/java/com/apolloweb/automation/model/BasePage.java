@@ -31,7 +31,6 @@ public class BasePage extends PageGenerator {
     //Write Text by using JAVA Generics (You can use both By or Webelement)
     public <T> void writeText (T elementAttr, String text) {
         if(elementAttr.getClass().getName().contains("By")) {
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By) elementAttr));
             driver.findElement((By) elementAttr).sendKeys(text);
         } else {
             ((WebElement) elementAttr).sendKeys(text);

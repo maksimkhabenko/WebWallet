@@ -13,7 +13,8 @@ public class TestConfiguration {
     private Properties properties;
     private final String propertyFilePath= "src\\test\\resources\\TestConfiguration.properties";
     private final String propertyTestEnvironmentKey = "TestEnvironment";
-
+    private final String propertyDefaultAccountRS = "DefaultAccountRS";
+    private final String propertyDefaultPass = "DefaultPass";
 
     private TestConfiguration(){
         ConfigFileReader();
@@ -49,5 +50,11 @@ public class TestConfiguration {
     }
     public String getWedDriverPath(WebDrivers webDriver){return properties.getProperty(webDriver.name()); }
 
+    public String getPropertyDefaultAccountRS() {
+        return properties.getProperty(propertyDefaultAccountRS);
+    }
 
+    public String getPropertyDefaultPass() {
+        return properties.getProperty(propertyDefaultPass);
+    }
 }

@@ -25,16 +25,19 @@ public class TestBase {
     public String baseUrl;
     public WebDriverWait wait;
     public PageGenerator page;
-
+    public String defaultAccountRS;
+    public String defaultPass;
 
 
     @BeforeAll
     public void setUp() {
+        this.baseUrl = TestConfiguration.getTestConfiguration().getBaseURL();
+        this.defaultAccountRS = TestConfiguration.getTestConfiguration().getPropertyDefaultAccountRS();
+        this.defaultPass = TestConfiguration.getTestConfiguration().getPropertyDefaultPass();
         driver = WebDriverManager.getWebDriver(WebDrivers.ChromeDriverForWindows);
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver,15);
         page = new PageGenerator(driver);
-        this.baseUrl = TestConfiguration.getTestConfiguration().getBaseURL();
         driver.manage().window().maximize();
     }
 
@@ -64,12 +67,5 @@ public class TestBase {
     }
     */
 
-    /*
-    @Override
-    public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
-        boolean testResult = extensionContext.getExecutionException().isPresent();
-        System.out.println("IS FAILED: "+testResult); //false - SUCCESS, true - FAILED
-        if (testResult)makeScreenshotOnFailure("ScreenshotOnFailure");
-    }
-    */
+
 }
