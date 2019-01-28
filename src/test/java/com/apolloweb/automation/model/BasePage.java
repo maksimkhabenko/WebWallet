@@ -2,6 +2,7 @@ package com.apolloweb.automation.model;
 
 
 import com.apolloweb.automation.helper.TestConfiguration;
+import io.qameta.allure.Attachment;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

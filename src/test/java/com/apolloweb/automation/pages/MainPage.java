@@ -2,9 +2,11 @@ package com.apolloweb.automation.pages;
 
 
 import com.apolloweb.automation.model.BasePage;
+import com.apolloweb.automation.pages.modals.CurrentAccount;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class MainPage extends BasePage {

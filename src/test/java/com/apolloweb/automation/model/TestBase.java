@@ -45,7 +45,6 @@ public class TestBase {
     @BeforeEach
     void BeforEachTest() {
         driver.get(baseUrl);
-        System.out.println("Start Page");
     }
 
     @AfterAll
