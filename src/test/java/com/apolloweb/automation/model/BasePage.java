@@ -17,7 +17,6 @@ public class BasePage extends PageGenerator {
     //Constructor
     public BasePage (WebDriver driver){
         super(driver);
-        this.baseUrl = TestConfiguration.getTestConfiguration().getBaseURL();
     }
 
     public <T> void click (T elementAttr) {

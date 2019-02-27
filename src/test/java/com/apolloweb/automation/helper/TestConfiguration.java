@@ -1,60 +1,51 @@
 package com.apolloweb.automation.helper;
 
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.Properties;
 
 public class TestConfiguration {
-    private static TestConfiguration testConfiguration;
-
-    private Properties properties;
-    private final String propertyFilePath= "src\\test\\resources\\TestConfiguration.properties";
-    private final String propertyTestEnvironmentKey = "TestEnvironment";
-    private final String propertyDefaultAccountRS = "DefaultAccountRS";
-    private final String propertyDefaultPass = "DefaultPass";
+    private JSONParser parser;
+    private static TestConfiguration testConfig;
+    private String host;
+    private String user;
+    private String pass;
 
     private TestConfiguration(){
-        ConfigFileReader();
-    }
-
-    public static TestConfiguration getTestConfiguration() {
-        if (testConfiguration == null){
-            testConfiguration = new TestConfiguration();
-        }
-        return testConfiguration;
-    }
-
-    public void ConfigFileReader(){
-        BufferedReader reader;
-
         try {
-            reader = new BufferedReader(new FileReader(propertyFilePath));
-            properties = new Properties();
-            try {
-                properties.load(reader);
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (FileNotFoundException e) {
+            parser = new JSONParser();
+            Object obj = parser.parse(new FileReader("src\\test\\resources\\config.json"));
+            JSONObject jsonObject = (JSONObject) obj;
+            host = (String) jsonObject.get("host");
+            user = (String) jsonObject.get("user");
+            pass = (String) jsonObject.get("pass");
+
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
-            throw new RuntimeException("Configuration.properties not found at " + propertyFilePath);
         }
     }
 
-    public String getBaseURL() {
-        return properties.getProperty(propertyTestEnvironmentKey);
-    }
-    public String getWedDriverPath(WebDrivers webDriver){return properties.getProperty(webDriver.name()); }
-
-    public String getPropertyDefaultAccountRS() {
-        return properties.getProperty(propertyDefaultAccountRS);
+    public static TestConfiguration getTestConfig() {
+        if (testConfig == null){
+            testConfig = new TestConfiguration();
+        }
+        return testConfig;
     }
 
-    public String getPropertyDefaultPass() {
-        return properties.getProperty(propertyDefaultPass);
+    public String getHost() {
+        return host;
     }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
 }

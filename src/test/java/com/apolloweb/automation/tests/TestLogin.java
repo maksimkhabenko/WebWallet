@@ -47,7 +47,5 @@ public class TestLogin extends TestBase {
         page.GetInstance(MainPage.class).logOut();
     }
 
-
-
-
+    
 }

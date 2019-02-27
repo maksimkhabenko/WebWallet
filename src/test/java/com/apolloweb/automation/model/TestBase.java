@@ -2,7 +2,7 @@ package com.apolloweb.automation.model;
 
 import com.apolloweb.automation.helper.TestConfiguration;
 import com.apolloweb.automation.helper.TestWatcherExtension;
-import com.apolloweb.automation.helper.WebDriverManager;
+import com.apolloweb.automation.helper.DriverManager;
 import com.apolloweb.automation.helper.WebDrivers;
 import io.qameta.allure.Attachment;
 import org.junit.jupiter.api.AfterAll;
@@ -31,10 +31,10 @@ public class TestBase {
 
     @BeforeAll
     public void setUp() {
-        this.baseUrl = TestConfiguration.getTestConfiguration().getBaseURL();
-        this.defaultAccountRS = TestConfiguration.getTestConfiguration().getPropertyDefaultAccountRS();
-        this.defaultPass = TestConfiguration.getTestConfiguration().getPropertyDefaultPass();
-        driver = WebDriverManager.getWebDriver(WebDrivers.ChromeDriverForWindows);
+        this.baseUrl = TestConfiguration.getTestConfig().getHost();
+        this.defaultAccountRS = TestConfiguration.getTestConfig().getUser();
+        this.defaultPass = TestConfiguration.getTestConfig().getPass();
+        driver = DriverManager.getWebDriver(WebDrivers.ChromeDriverForWindows);
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver,15);
         page = new PageGenerator(driver);
@@ -58,13 +58,6 @@ public class TestBase {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
-    /*
-    @Attachment(value = "{elemetnt} - screenshot", type = "image/png")
-    public byte[] makeScreenshotOnFailureElement(By element) {
-
-        return ((TakesScreenshot) driver.findElement(element)).getScreenshotAs(OutputType.BYTES);
-    }
-    */
 
 
 }

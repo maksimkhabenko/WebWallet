@@ -5,12 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class PageGenerator {
-    public WebDriver driver;
     public String baseUrl;
+    public WebDriver driver;
 
     public PageGenerator(WebDriver driver){
         this.driver = driver;
-        this.baseUrl = TestConfiguration.getTestConfiguration().getBaseURL();
+        this.baseUrl = TestConfiguration.getTestConfig().getHost();
     }
 
     //JAVA Generics to Create and return a New Page
