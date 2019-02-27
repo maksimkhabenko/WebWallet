@@ -1,16 +1,19 @@
 package com.apolloweb.automation.model;
 
 import com.apolloweb.automation.helper.TestConfiguration;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class PageGenerator {
     public String baseUrl;
     public WebDriver driver;
+    public JavascriptExecutor executor;
 
     public PageGenerator(WebDriver driver){
         this.driver = driver;
         this.baseUrl = TestConfiguration.getTestConfig().getHost();
+        this.executor = (JavascriptExecutor)driver;
     }
 
     //JAVA Generics to Create and return a New Page

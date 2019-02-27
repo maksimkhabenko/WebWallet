@@ -34,7 +34,7 @@ public class TestBase {
         this.baseUrl = TestConfiguration.getTestConfig().getHost();
         this.defaultAccountRS = TestConfiguration.getTestConfig().getUser();
         this.defaultPass = TestConfiguration.getTestConfig().getPass();
-        driver = DriverManager.getWebDriver(WebDrivers.ChromeDriverForWindows);
+        driver = DriverManager.getWebDriver(WebDrivers.FireFoxDriverForWindows);
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver,15);
         page = new PageGenerator(driver);

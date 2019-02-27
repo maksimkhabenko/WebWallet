@@ -2,7 +2,6 @@ package com.apolloweb.automation.pages;
 
 import com.apolloweb.automation.model.BasePage;
 import com.apolloweb.automation.pages.modals.CreateAccount;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -44,10 +43,25 @@ public class LoginPage extends BasePage {
 
     public String createStandartWallet(){
         click(createAccountModal);
-        click(createAccount.createButton);
+        click(createAccount.createStandartWalletButton);
         String pass = readText(createAccount.generatedPassField);
         String account = readText(createAccount.generatedAccountRSField);
-        click(createAccount.checkBoxAgree);
+        click(createAccount.checkBoxSavePass);
+        click(createAccount.nextButton);
+        click(createAccount.enterPassField);
+        writeText(createAccount.enterPassField,pass);
+        click(createAccount.createWalletButton);
+        return  account;
+    }
+
+    public String createStandartWalletWithCustomPass(String customPass){
+        click(createAccountModal);
+        click(createAccount.checkBoxCreateCustomPassStandartWallet);
+        writeText(createAccount.customPassFieldStandartWallet,customPass);
+        click(createAccount.createStandartWalletButton);
+        String pass = readText(createAccount.generatedPassField);
+        String account = readText(createAccount.generatedAccountRSField);
+        click(createAccount.checkBoxSavePass);
         click(createAccount.nextButton);
         click(createAccount.enterPassField);
         writeText(createAccount.enterPassField,pass);
@@ -56,9 +70,39 @@ public class LoginPage extends BasePage {
     }
 
 
-    public void verifyLoginUserName (String user){
-       // Assert.assertEquals(readText(loginByPass),user);
+
+    public String createVaultWallet()  {
+        click(createAccountModal);
+        click(createAccount.vaultValletTab);
+        click(createAccount.createStandartVaultButton);
+        String pass = readText(createAccount.generatedPassField);
+        String account = readText(createAccount.generatedAccountRSField);
+        click(createAccount.checkBoxSavePass);
+        click(createAccount.nextButton);
+        click(createAccount.enterPassField);
+        writeText(createAccount.enterPassField,pass);
+        click(createAccount.createWalletButton);
+        return  account;
     }
+
+    public String createVaultWalletWithCustomPass(String customPass)  {
+        click(createAccountModal);
+        click(createAccount.vaultValletTab);
+        clickJS(createAccount.checkBoxCreateCustomPassVaultWallet);
+        writeText(createAccount.customPassFieldVaultWallet,customPass);
+        click(createAccount.createStandartVaultButton);
+        String pass = readText(createAccount.generatedPassField);
+        String account = readText(createAccount.generatedAccountRSField);
+        click(createAccount.checkBoxSavePass);
+        click(createAccount.nextButton);
+        click(createAccount.enterPassField);
+        writeText(createAccount.enterPassField,pass);
+        click(createAccount.createWalletButton);
+        return  account;
+    }
+
+
+
 
 
 

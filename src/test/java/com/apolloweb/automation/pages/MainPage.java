@@ -3,10 +3,10 @@ package com.apolloweb.automation.pages;
 
 import com.apolloweb.automation.model.BasePage;
 import com.apolloweb.automation.pages.modals.CurrentAccount;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class MainPage extends BasePage {
@@ -19,13 +19,13 @@ public class MainPage extends BasePage {
     }
 
     public void verifyAccountID (String verifyAccountID){
-        Assert.assertEquals(readText(acoountRS),verifyAccountID);
+        assertEquals(readText(acoountRS),verifyAccountID);
     }
 
     public void logOut()
     {
-       click(currentAccount.openModal);
-       click(currentAccount.logout);
+       clickJS(currentAccount.openModal);
+       clickJS(currentAccount.logout);
     }
 
 }

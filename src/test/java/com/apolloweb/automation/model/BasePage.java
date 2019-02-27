@@ -27,6 +27,9 @@ public class BasePage extends PageGenerator {
             ((WebElement) elementAttr).click();
         }
     }
+    public void clickJS (By elementAttr) {
+            executor.executeScript("arguments[0].click();", (WebElement)  driver.findElement(elementAttr));
+    }
 
     //Write Text by using JAVA Generics (You can use both By or Webelement)
     public <T> void writeText (T elementAttr, String text) {
@@ -45,6 +48,11 @@ public class BasePage extends PageGenerator {
         } else {
             return ((WebElement) elementAttr).getText();
         }
+    }
+
+    public void scroll(int pixels)
+    {
+        executor.executeScript("scroll(0,"+pixels+");");
     }
 
     //Close popup if exists
